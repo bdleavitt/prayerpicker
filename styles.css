@@ -141,6 +141,60 @@ body {
   padding: 0.5rem 0;
 }
 
+.word-bank-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  touch-action: manipulation;
+}
+
+.custom-entry {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.custom-input,
+.search-input {
+  flex: 1;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.add-custom-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.search-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.no-results {
+  color: #888;
+  font-size: 0.95rem;
+  margin: 0.25rem 0;
+}
+
 .word-chip {
   background: #f3e8ff;
   border: 2px solid var(--color-primary);
@@ -178,6 +232,18 @@ body {
 .prayer-output {
   font-size: 1.2rem;
   line-height: 1.6;
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.prayer-output li {
+  margin-bottom: 0.4rem;
+}
+
+.prayer-fixed-line {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
 }
 
 @media (max-width: 480px) {

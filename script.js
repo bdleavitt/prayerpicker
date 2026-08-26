@@ -1,24 +1,47 @@
-// Word/phrase banks for the prayer builder.
-const WORD_BANKS = {
-  gratitude: [
-    "my family", "my friends", "my home", "food to eat", "this beautiful day",
-    "my teacher", "my pets", "the scriptures", "my health", "the Holy Ghost",
-    "my church", "warm clothes", "kind neighbors", "school", "toys to play with",
-    "sunshine", "rain", "music", "books", "Jesus Christ",
-  ],
-  request: [
-    "my family", "my friends", "those who are sick", "missionaries", "my teacher",
-    "people who are sad", "safety today", "help to be kind", "my pets",
-    "those who are lonely", "help with my homework", "peace in the world",
-    "my grandparents", "help to make good choices", "those who need food",
-    "help to be brave", "my church leaders", "help to forgive others",
-  ],
+// Word/phrase banks for the prayer builder are loaded at runtime from
+// word-bank.json so they can be edited independently of this script.
+const WORD_BANK_URL = "word-bank.json";
+
+let WORD_BANKS = {
+  gratitude: [],
+  request: [],
 };
+
+const PREVIEW_COUNT = 5;
 
 const state = {
   gratitude: [],
   request: [],
 };
+
+const uiState = {
+  gratitude: { expanded: false, search: "", preview: [] },
+  request: { expanded: false, search: "", preview: [] },
+};
+
+function shuffle(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+// Simple fuzzy match: true if every character of `query` appears in `text`,
+// in order, allowing gaps in between (a lightweight subsequence match).
+function fuzzyMatch(query, text) {
+  const normalizedQuery = query.trim().toLowerCase();
+  if (!normalizedQuery) return true;
+  const normalizedText = text.toLowerCase();
+  let searchIndex = 0;
+  for (const char of normalizedQuery) {
+    searchIndex = normalizedText.indexOf(char, searchIndex);
+    if (searchIndex === -1) return false;
+    searchIndex += 1;
+  }
+  return true;
+}
 
 function createWordChip(word, section) {
   const chip = document.createElement("button");
@@ -39,10 +62,28 @@ function createWordChip(word, section) {
   return chip;
 }
 
+function getVisibleWords(section) {
+  const ui = uiState[section];
+  if (!ui.expanded) {
+    return ui.preview;
+  }
+  return WORD_BANKS[section].filter((word) => fuzzyMatch(ui.search, word));
+}
+
 function renderWordBank(section) {
   const bank = document.getElementById(`${section}-bank`);
   bank.innerHTML = "";
-  WORD_BANKS[section].forEach((word) => {
+  const words = getVisibleWords(section);
+
+  if (words.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "no-results";
+    empty.textContent = "No words found. Try a different search.";
+    bank.appendChild(empty);
+    return;
+  }
+
+  words.forEach((word) => {
     const chip = createWordChip(word, section);
     if (state[section].includes(word)) {
       chip.classList.add("selected");
@@ -71,8 +112,10 @@ function renderChosenWords(section) {
 }
 
 function addWord(section, word) {
-  if (state[section].includes(word)) return;
-  state[section].push(word);
+  const trimmed = word.trim();
+  if (!trimmed) return;
+  if (state[section].includes(trimmed)) return;
+  state[section].push(trimmed);
   renderChosenWords(section);
   renderWordBank(section);
   updatePrayerOutput();
@@ -92,15 +135,6 @@ function clearSection(section) {
   updatePrayerOutput();
 }
 
-function shuffle(array) {
-  const result = [...array];
-  for (let i = result.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-
 function pickRandomWords(section, count = 3) {
   const available = WORD_BANKS[section].filter((w) => !state[section].includes(w));
   const shuffled = shuffle(available);
@@ -108,28 +142,57 @@ function pickRandomWords(section, count = 3) {
   picks.forEach((word) => addWord(section, word));
 }
 
-function joinWords(words) {
-  if (words.length === 0) return "";
-  if (words.length === 1) return words[0];
-  if (words.length === 2) return `${words[0]} and ${words[1]}`;
-  return `${words.slice(0, -1).join(", ")}, and ${words[words.length - 1]}`;
+function addCustomWord(section) {
+  const input = document.getElementById(`${section}-custom-input`);
+  if (!input) return;
+  const trimmed = input.value.trim();
+  if (!trimmed) return;
+
+  if (!WORD_BANKS[section].includes(trimmed)) {
+    WORD_BANKS[section].push(trimmed);
+    if (!uiState[section].expanded) {
+      uiState[section].preview.push(trimmed);
+    }
+  }
+
+  addWord(section, trimmed);
+  input.value = "";
+  input.focus();
+}
+
+function toggleSection(section) {
+  const ui = uiState[section];
+  ui.expanded = !ui.expanded;
+  ui.search = "";
+
+  const searchInput = document.getElementById(`${section}-search`);
+  if (searchInput) searchInput.value = "";
+
+  const searchWrapper = document.getElementById(`${section}-search-wrapper`);
+  if (searchWrapper) searchWrapper.hidden = !ui.expanded;
+
+  const toggleBtn = document.querySelector(`.toggle-btn[data-target="${section}"]`);
+  if (toggleBtn) {
+    toggleBtn.textContent = ui.expanded ? "Show fewer words \u25B4" : "Show all words \u25BE";
+    toggleBtn.setAttribute("aria-expanded", String(ui.expanded));
+  }
+
+  renderWordBank(section);
 }
 
 function updatePrayerOutput() {
-  const output = document.getElementById("prayer-output");
-  const gratitude = state.gratitude;
-  const request = state.request;
+  const list = document.getElementById("prayer-output");
+  list.innerHTML = "";
 
-  let text = "Dear Heavenly Father, ";
-  text += gratitude.length
-    ? `I am thankful for ${joinWords(gratitude)}. `
-    : "";
-  text += request.length
-    ? `Please bless ${joinWords(request)}. `
-    : "";
-  text += "In the name of Jesus Christ, amen.";
+  const lines = [];
+  state.gratitude.forEach((word) => lines.push(`I am thankful for ${word}.`));
+  state.request.forEach((word) => lines.push(`Please bless ${word}.`));
 
-  output.textContent = text;
+  lines.forEach((line) => {
+    const item = document.createElement("li");
+    item.textContent = line;
+    list.appendChild(item);
+  });
 }
 
 function setupDropzone(section) {
@@ -172,9 +235,53 @@ function setupControls() {
   document.querySelectorAll(".clear-btn").forEach((btn) => {
     btn.addEventListener("click", () => clearSection(btn.dataset.target));
   });
+  document.querySelectorAll(".toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", () => toggleSection(btn.dataset.target));
+  });
+  document.querySelectorAll(".add-custom-btn").forEach((btn) => {
+    btn.addEventListener("click", () => addCustomWord(btn.dataset.target));
+  });
+  document.querySelectorAll(".custom-input").forEach((input) => {
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addCustomWord(input.dataset.target);
+      }
+    });
+  });
+  document.querySelectorAll(".search-input").forEach((input) => {
+    input.addEventListener("input", () => {
+      const section = input.dataset.target;
+      uiState[section].search = input.value;
+      renderWordBank(section);
+    });
+  });
 }
 
-function init() {
+async function loadWordBanks() {
+  try {
+    const response = await fetch(WORD_BANK_URL);
+    if (!response.ok) {
+      throw new Error(`Failed to load ${WORD_BANK_URL}: ${response.status}`);
+    }
+    const data = await response.json();
+    WORD_BANKS = {
+      gratitude: Array.isArray(data.gratitude) ? data.gratitude : [],
+      request: Array.isArray(data.request) ? data.request : [],
+    };
+  } catch (err) {
+    console.error("Could not load word-bank.json; falling back to an empty word bank.", err);
+    WORD_BANKS = { gratitude: [], request: [] };
+  }
+}
+
+async function init() {
+  await loadWordBanks();
+
+  ["gratitude", "request"].forEach((section) => {
+    uiState[section].preview = shuffle(WORD_BANKS[section]).slice(0, PREVIEW_COUNT);
+  });
+
   renderWordBank("gratitude");
   renderWordBank("request");
   renderChosenWords("gratitude");
@@ -186,3 +293,4 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+

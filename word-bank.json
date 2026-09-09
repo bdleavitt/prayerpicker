@@ -1,0 +1,66 @@
+{
+  "en": {
+    "gratitude": [
+      "my family", "my friends", "my home", "food to eat", "this beautiful day",
+      "my teacher", "my pets", "the scriptures", "my health", "the Holy Ghost",
+      "my church", "warm clothes", "kind neighbors", "school", "toys to play with",
+      "sunshine", "rain", "music", "books", "Jesus Christ",
+      "my mom", "my dad", "my siblings", "my grandparents", "my cousins",
+      "a warm bed", "clean water", "my body", "nature", "animals",
+      "the trees", "the flowers", "my talents", "my friends at school", "safety",
+      "a fun day", "helpers who keep us safe", "doctors and nurses", "my church leaders",
+      "the temple", "prayer", "the gospel", "General Conference", "Family Home Evening",
+      "my favorite toy", "a good night's sleep", "laughter", "hugs", "kindness",
+      "second chances", "forgiveness", "learning new things", "my imagination",
+      "the seasons", "snow", "the stars", "the moon", "the ocean"
+    ],
+    "request": [
+      "my family", "my friends", "those who are sick", "missionaries", "my teacher",
+      "people who are sad", "safety today", "help to be kind", "my pets",
+      "those who are lonely", "help with my homework", "peace in the world",
+      "my grandparents", "help to make good choices", "those who need food",
+      "help to be brave", "my church leaders", "help to forgive others",
+      "my mom", "my dad", "my siblings", "people who are hurting", "those who are scared",
+      "help to be patient", "help to share", "help to listen", "our prophet",
+      "families all over the world", "people without homes", "help to be honest",
+      "help to be a good friend", "safe travels", "help at school tomorrow",
+      "those who help us", "soldiers and their families", "help to be grateful",
+      "help to say sorry", "comfort for those who are hurting", "help to be gentle",
+      "help to try my best", "help to be happy", "those who feel left out",
+      "help to control my temper", "wisdom for our leaders", "help to be generous",
+      "protection while we sleep", "strength for tomorrow", "help to remember to pray"
+    ]
+  },
+  "es": {
+    "gratitude": [
+      "mi familia", "mis amigos", "mi hogar", "la comida", "este hermoso día",
+      "mi maestro", "mis mascotas", "las Escrituras", "mi salud", "el Espíritu Santo",
+      "mi iglesia", "ropa abrigada", "vecinos amables", "la escuela", "juguetes para jugar",
+      "el sol", "la lluvia", "la música", "los libros", "Jesucristo",
+      "mi mamá", "mi papá", "mis hermanos", "mis abuelos", "mis primos",
+      "una cama cómoda", "agua limpia", "mi cuerpo", "la naturaleza", "los animales",
+      "los árboles", "las flores", "mis talentos", "mis amigos de la escuela", "la seguridad",
+      "un día divertido", "las personas que nos protegen", "los doctores y enfermeros", "mis líderes de la iglesia",
+      "el templo", "la oración", "el evangelio", "la conferencia general", "la noche de hogar",
+      "mi juguete favorito", "una buena noche de sueño", "la risa", "los abrazos", "la bondad",
+      "segundas oportunidades", "el perdón", "aprender cosas nuevas", "mi imaginación",
+      "las estaciones", "la nieve", "las estrellas", "la luna", "el océano"
+    ],
+    "request": [
+      "mi familia", "mis amigos", "los enfermos", "los misioneros", "mi maestro",
+      "las personas tristes", "seguridad hoy", "ayuda para ser amable", "mis mascotas",
+      "los que se sienten solos", "ayuda con mi tarea", "paz en el mundo",
+      "mis abuelos", "ayuda para escoger lo correcto", "los que necesitan comida",
+      "ayuda para ser valiente", "mis líderes de la iglesia", "ayuda para perdonar a los demás",
+      "mi mamá", "mi papá", "mis hermanos", "las personas que sufren", "los que tienen miedo",
+      "ayuda para ser paciente", "ayuda para compartir", "ayuda para escuchar", "nuestro profeta",
+      "las familias de todo el mundo", "las personas sin hogar", "ayuda para ser honesto",
+      "ayuda para ser un buen amigo", "viajes seguros", "ayuda en la escuela mañana",
+      "los que nos ayudan", "los soldados y sus familias", "ayuda para ser agradecido",
+      "ayuda para pedir perdón", "consuelo para los que sufren", "ayuda para ser tierno",
+      "ayuda para hacer mi mejor esfuerzo", "ayuda para estar feliz", "los que se sienten excluidos",
+      "ayuda para controlar mi enojo", "sabiduría para nuestros líderes", "ayuda para ser generoso",
+      "protección mientras dormimos", "fuerza para mañana", "ayuda para recordar orar"
+    ]
+  }
+}

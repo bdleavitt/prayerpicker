@@ -42,7 +42,7 @@ body {
   font-weight: bold;
 }
 
-#language-toggle {
+#language-select {
   border: 2px solid var(--color-primary);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;

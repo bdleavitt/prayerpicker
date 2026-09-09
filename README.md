@@ -15,7 +15,7 @@ in the latter-day Saint tradition. Tap or drag words from the word banks (or use
 Each section shows a random preview of a few words by default; use "Show all
 words" to expand the full list with a search box, or type your own phrase in
 the "Type your own..." box. The "My Prayer" preview lists each phrase on its
-own line. Use the language toggle to switch between English and Spanish.
+own line. Use the language dropdown to switch between English and Spanish.
 
 ### Editing the word bank
 

@@ -26,7 +26,6 @@ const translations = {
   en: {
     documentLanguage: "en",
     languageLabel: "Language",
-    toggleLabel: "Español",
     subtitle: "Tap or drag words to build your prayer!",
     opening: "Dear Heavenly Father,",
     gratitudeHeading: "I am thankful for...",
@@ -55,7 +54,6 @@ const translations = {
   es: {
     documentLanguage: "es",
     languageLabel: "Idioma",
-    toggleLabel: "English",
     subtitle: "¡Toca o arrastra palabras para crear tu oración!",
     opening: "Querido Padre Celestial,",
     gratitudeHeading: "Estoy agradecido por...",
@@ -342,7 +340,8 @@ function setupControls() {
       renderWordBank(section);
     });
   });
-  document.getElementById("language-toggle").addEventListener("click", switchLanguage);
+  const languageSelect = document.getElementById("language-select");
+  languageSelect.addEventListener("change", () => switchLanguage(languageSelect.value));
 }
 
 function updateSectionToggle(section) {
@@ -362,9 +361,8 @@ function initializePreviews() {
 function renderLanguage() {
   document.documentElement.lang = text().documentLanguage;
   document.getElementById("language-label").textContent = text().languageLabel;
-  const languageToggle = document.getElementById("language-toggle");
-  languageToggle.textContent = text().toggleLabel;
-  languageToggle.setAttribute("aria-pressed", String(currentLanguage === "es"));
+  const languageSelect = document.getElementById("language-select");
+  languageSelect.value = currentLanguage;
 
   document.getElementById("app-subtitle").textContent = text().subtitle;
   document.getElementById("opening-heading").textContent = text().opening;
@@ -405,8 +403,10 @@ function renderLanguage() {
   updatePrayerOutput();
 }
 
-function switchLanguage() {
-  currentLanguage = currentLanguage === "en" ? "es" : "en";
+function switchLanguage(language) {
+  const targetLanguage = language && translations[language] ? language : currentLanguage === "en" ? "es" : "en";
+  if (targetLanguage === currentLanguage) return;
+  currentLanguage = targetLanguage;
   SECTIONS.forEach((section) => {
     uiState[section].search = "";
     const searchInput = document.getElementById(`${section}-search`);

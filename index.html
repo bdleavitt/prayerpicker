@@ -9,9 +9,12 @@
 <body>
   <div class="app">
     <h1 class="app-title">🙏 Prayer Picker</h1>
-    <div class="language-toggle" aria-labelledby="language-label">
-      <span id="language-label">Language</span>
-      <button type="button" id="language-toggle" aria-pressed="false">Español</button>
+    <div class="language-toggle">
+      <label id="language-label" for="language-select">Language</label>
+      <select id="language-select" aria-labelledby="language-label">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
     </div>
     <p class="app-subtitle" id="app-subtitle">Tap or drag words to build your prayer!</p>
 

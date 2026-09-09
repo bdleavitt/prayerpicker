@@ -9,13 +9,17 @@
 <body>
   <div class="app">
     <h1 class="app-title">🙏 Prayer Picker</h1>
-    <p class="app-subtitle">Tap or drag words to build your prayer!</p>
+    <div class="language-toggle" aria-labelledby="language-label">
+      <span id="language-label">Language</span>
+      <button type="button" id="language-toggle" aria-pressed="false">Español</button>
+    </div>
+    <p class="app-subtitle" id="app-subtitle">Tap or drag words to build your prayer!</p>
 
     <main class="prayer-card">
-      <h2 class="prayer-heading">Dear Heavenly Father,</h2>
+      <h2 class="prayer-heading" id="opening-heading">Dear Heavenly Father,</h2>
 
       <section class="prayer-section" data-section="gratitude">
-        <h3 class="prayer-subheading">I am thankful for...</h3>
+        <h3 class="prayer-subheading" id="gratitude-heading">I am thankful for...</h3>
         <div class="chosen-words" id="gratitude-chosen" aria-label="Chosen gratitude words"></div>
         <div class="section-controls">
           <button type="button" class="random-btn" data-target="gratitude">🎲 Surprise me!</button>
@@ -35,7 +39,7 @@
       </section>
 
       <section class="prayer-section" data-section="request">
-        <h3 class="prayer-subheading">Please bless...</h3>
+        <h3 class="prayer-subheading" id="request-heading">Please bless...</h3>
         <div class="chosen-words" id="request-chosen" aria-label="Chosen blessing words"></div>
         <div class="section-controls">
           <button type="button" class="random-btn" data-target="request">🎲 Surprise me!</button>
@@ -54,14 +58,14 @@
         </div>
       </section>
 
-      <h2 class="prayer-heading closing">In the name of Jesus Christ, amen.</h2>
+      <h2 class="prayer-heading closing" id="closing-heading">In the name of Jesus Christ, amen.</h2>
     </main>
 
     <section class="my-prayer">
-      <h2>My Prayer</h2>
-      <p class="prayer-fixed-line">Dear Heavenly Father,</p>
+      <h2 id="my-prayer-heading">My Prayer</h2>
+      <p class="prayer-fixed-line" id="opening-line">Dear Heavenly Father,</p>
       <ol id="prayer-output" class="prayer-output"></ol>
-      <p class="prayer-fixed-line">In the name of Jesus Christ, amen.</p>
+      <p class="prayer-fixed-line" id="closing-line">In the name of Jesus Christ, amen.</p>
     </section>
   </div>
 

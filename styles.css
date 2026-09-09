@@ -33,6 +33,28 @@ body {
   color: var(--color-primary);
 }
 
+.language-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+#language-toggle {
+  border: 2px solid var(--color-primary);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  background: var(--color-card);
+  color: var(--color-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
 .app-subtitle {
   text-align: center;
   margin-top: 0;
@@ -86,7 +108,7 @@ body {
 }
 
 .chosen-words:empty::before {
-  content: "Tap or drag words here \2193";
+  content: attr(data-empty-text);
   color: #aaa;
   font-size: 1rem;
 }

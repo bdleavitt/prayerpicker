@@ -282,7 +282,10 @@ function setupDropzone(section) {
   const zone = document.getElementById(`${section}-chosen`);
   const acceptedType = `application/x-prayer-section-${section}`;
 
-  const isAcceptable = (event) => event.dataTransfer.types.includes(acceptedType);
+  // DataTransfer.types can be a DOMStringList in some browsers, so copy it into
+  // an array before checking for our custom MIME type.
+  const isAcceptable = (event) =>
+    Array.from(event.dataTransfer.types || []).includes(acceptedType);
 
   zone.addEventListener("dragover", (event) => {
     if (!isAcceptable(event)) return;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prayer Picker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <h1 class="app-title">🙏 Prayer Picker</h1>
+    <p class="app-subtitle">Tap or drag words to build your prayer!</p>
+
+    <main class="prayer-card">
+      <h2 class="prayer-heading">Dear Heavenly Father,</h2>
+
+      <section class="prayer-section" data-section="gratitude">
+        <h3 class="prayer-subheading">I am thankful for...</h3>
+        <div class="chosen-words" id="gratitude-chosen" aria-label="Chosen gratitude words"></div>
+        <div class="section-controls">
+          <button type="button" class="random-btn" data-target="gratitude">🎲 Surprise me!</button>
+          <button type="button" class="clear-btn" data-target="gratitude">Clear</button>
+        </div>
+        <div class="custom-entry">
+          <input type="text" class="custom-input" id="gratitude-custom-input" data-target="gratitude" placeholder="Type your own..." maxlength="60" aria-label="Type your own gratitude phrase">
+          <button type="button" class="add-custom-btn" data-target="gratitude">Add</button>
+        </div>
+        <div class="word-bank-wrapper">
+          <button type="button" class="toggle-btn" data-target="gratitude" aria-expanded="false">Show all words ▾</button>
+          <div class="search-wrapper" id="gratitude-search-wrapper" hidden>
+            <input type="search" class="search-input" id="gratitude-search" data-target="gratitude" placeholder="🔍 Search words..." aria-label="Search gratitude words">
+          </div>
+          <div class="word-bank" id="gratitude-bank" data-dropzone="gratitude"></div>
+        </div>
+      </section>
+
+      <section class="prayer-section" data-section="request">
+        <h3 class="prayer-subheading">Please bless...</h3>
+        <div class="chosen-words" id="request-chosen" aria-label="Chosen blessing words"></div>
+        <div class="section-controls">
+          <button type="button" class="random-btn" data-target="request">🎲 Surprise me!</button>
+          <button type="button" class="clear-btn" data-target="request">Clear</button>
+        </div>
+        <div class="custom-entry">
+          <input type="text" class="custom-input" id="request-custom-input" data-target="request" placeholder="Type your own..." maxlength="60" aria-label="Type your own blessing phrase">
+          <button type="button" class="add-custom-btn" data-target="request">Add</button>
+        </div>
+        <div class="word-bank-wrapper">
+          <button type="button" class="toggle-btn" data-target="request" aria-expanded="false">Show all words ▾</button>
+          <div class="search-wrapper" id="request-search-wrapper" hidden>
+            <input type="search" class="search-input" id="request-search" data-target="request" placeholder="🔍 Search words..." aria-label="Search blessing words">
+          </div>
+          <div class="word-bank" id="request-bank" data-dropzone="request"></div>
+        </div>
+      </section>
+
+      <h2 class="prayer-heading closing">In the name of Jesus Christ, amen.</h2>
+    </main>
+
+    <section class="my-prayer">
+      <h2>My Prayer</h2>
+      <p class="prayer-fixed-line">Dear Heavenly Father,</p>
+      <ol id="prayer-output" class="prayer-output"></ol>
+      <p class="prayer-fixed-line">In the name of Jesus Christ, amen.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

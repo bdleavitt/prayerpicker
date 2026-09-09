@@ -1,0 +1,263 @@
+:root {
+  --color-bg: #fef6e4;
+  --color-primary: #6a4fbf;
+  --color-secondary: #f582ae;
+  --color-accent: #8bd3dd;
+  --color-text: #2b2b3c;
+  --color-card: #ffffff;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Comic Sans MS", "Trebuchet MS", Verdana, sans-serif;
+  background: linear-gradient(180deg, var(--color-bg), #f3e8ff);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-primary);
+}
+
+.app-subtitle {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.prayer-card {
+  background: var(--color-card);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.prayer-heading {
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.prayer-heading.closing {
+  margin-top: 1.5rem;
+}
+
+.prayer-section {
+  margin-bottom: 1.5rem;
+}
+
+.prayer-subheading {
+  color: var(--color-secondary);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.chosen-words {
+  min-height: 3rem;
+  border: 2px dashed var(--color-accent);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  background: #fbfbff;
+}
+
+.chosen-words.drag-over {
+  background: #eaf9fb;
+  border-color: var(--color-secondary);
+}
+
+.chosen-words:empty::before {
+  content: "Tap or drag words here \2193";
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.chosen-word {
+  background: var(--color-accent);
+  color: #063a42;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  border: none;
+}
+
+.chosen-word .remove {
+  font-weight: bold;
+}
+
+.section-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.random-btn,
+.clear-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.random-btn {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.clear-btn {
+  background: #eee;
+  color: #333;
+}
+
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.word-bank-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  touch-action: manipulation;
+}
+
+.custom-entry {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.custom-input,
+.search-input {
+  flex: 1;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.add-custom-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.search-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.no-results {
+  color: #888;
+  font-size: 0.95rem;
+  margin: 0.25rem 0;
+}
+
+.word-chip {
+  background: #f3e8ff;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: grab;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.word-chip:active {
+  cursor: grabbing;
+}
+
+.word-chip.selected {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.my-prayer {
+  background: var(--color-card);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.my-prayer h2 {
+  color: var(--color-primary);
+  margin-top: 0;
+}
+
+.prayer-output {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.prayer-output li {
+  margin-bottom: 0.4rem;
+}
+
+.prayer-fixed-line {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .prayer-card,
+  .my-prayer {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+  }
+}
